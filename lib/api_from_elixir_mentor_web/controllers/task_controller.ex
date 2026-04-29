@@ -6,9 +6,9 @@ defmodule ApiFromElixirMentorWeb.TaskController do
   action_fallback ApiFromElixirMentorWeb.FallbackController
 
   def index(conn, params) do
-    tasks = Tasks.list_tasks(params)
+    {tasks, next} = Tasks.list_tasks(params)
 
-    render(conn, :index, tasks: tasks)
+    render(conn, :index, tasks: tasks, next_cursor: next)
   end
 
   def show(conn, %{"id" => id}) do

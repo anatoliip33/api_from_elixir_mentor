@@ -4,8 +4,8 @@ defmodule ApiFromElixirMentorWeb.TaskJSON do
   @doc """
   Renders a list of tasks.
   """
-  def index(%{tasks: tasks}) do
-    for(task <- tasks, do: data(task))
+  def index(%{tasks: tasks, next_cursor: next_cursor}) do
+    %{data: for(task <- tasks, do: data(task)), next_cursor: next_cursor}
   end
 
   @doc """
