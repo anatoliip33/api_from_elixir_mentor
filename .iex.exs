@@ -1,1 +1,2 @@
 alias ApiFromElixirMentor.Tasks.Task
+alias ApiFromElixirMentor.Tasks

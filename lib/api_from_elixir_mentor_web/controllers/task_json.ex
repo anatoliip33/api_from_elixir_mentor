@@ -15,6 +15,10 @@ defmodule ApiFromElixirMentorWeb.TaskJSON do
     data(task)
   end
 
+  def summary(%{tasks_summary: tasks_summary}) do
+    tasks_summary
+  end
+
   defp data(%Task{} = task) do
     %{
       id: task.id,

@@ -58,4 +58,12 @@ defmodule ApiFromElixirMentor.Tasks do
     |> Task.changeset(attrs)
     |> Repo.insert()
   end
+
+  def get_summary() do
+    Task
+    |> group_by([t], t.status)
+    |> select([t], {t.status, count(t.id)})
+    |> Repo.all()
+    |> Enum.into(%{})
+  end
 end

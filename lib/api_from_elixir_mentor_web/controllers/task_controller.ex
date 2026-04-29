@@ -24,4 +24,10 @@ defmodule ApiFromElixirMentorWeb.TaskController do
       |> render(:show, task: task)
     end
   end
+
+  def summary(conn, _params) do
+    tasks_summary = Tasks.get_summary()
+
+    render(conn, :summary, tasks_summary: tasks_summary)
+  end
 end

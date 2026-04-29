@@ -8,6 +8,8 @@ defmodule ApiFromElixirMentorWeb.Router do
   scope "/api", ApiFromElixirMentorWeb do
     pipe_through :api
 
+    get "/tasks/summary", TaskController, :summary
+
     resources "/tasks", TaskController, only: [:index, :show, :create]
   end
 end
