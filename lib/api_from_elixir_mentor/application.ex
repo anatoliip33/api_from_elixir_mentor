@@ -8,9 +8,9 @@ defmodule ApiFromElixirMentor.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      ApiFromElixirMentorWeb.Telemetry,
       ApiFromElixirMentor.Repo,
-      {DNSCluster, query: Application.get_env(:api_from_elixir_mentor, :dns_cluster_query) || :ignore},
+      {DNSCluster,
+       query: Application.get_env(:api_from_elixir_mentor, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: ApiFromElixirMentor.PubSub},
       # Start a worker by calling: ApiFromElixirMentor.Worker.start_link(arg)
       # {ApiFromElixirMentor.Worker, arg},
