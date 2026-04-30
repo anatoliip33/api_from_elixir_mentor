@@ -1,18 +1,88 @@
-# TaskPipeline
+# Task Pipeline API
 
-To start your Phoenix server:
+Backend API for asynchronous task processing with Oban, built in Phoenix and Ecto.
 
-* Run `mix setup` to install and setup dependencies
-* Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+## Features
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+- Create tasks with `title`, `type`, `priority`, `payload`, and `max_attempts`
+- Asynchronous processing using Oban jobs
+- Task status lifecycle: `queued`, `processing`, `completed`, `failed`
+- Cursor-based pagination for task listing
+- Status summary endpoint with aggregate counts by status
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+## Setup
 
-## Learn more
+```bash
+mix setup
+mix phx.server
+```
 
-* Official website: https://www.phoenixframework.org/
-* Guides: https://hexdocs.pm/phoenix/overview.html
-* Docs: https://hexdocs.pm/phoenix
-* Forum: https://elixirforum.com/c/phoenix-forum
-* Source: https://github.com/phoenixframework/phoenix
+The server starts on `http://localhost:4000`.
+
+## Database
+
+The project uses PostgreSQL and Ecto.
+
+## API Endpoints
+
+### Create task
+
+`POST /api/tasks`
+
+Request body:
+
+```json
+{
+  "task": {
+    "title": "Import customers",
+    "type": "import",
+    "priority": "critical",
+    "payload": {"source": "s3://bucket/customers.csv"},
+    "max_attempts": 3
+  }
+}
+```
+
+### List tasks
+
+`GET /api/tasks`
+
+Query params supported:
+- `status`
+- `type`
+- `priority`
+- `limit`
+- `next_cursor`
+
+### Get task
+
+`GET /api/tasks/:id`
+
+### Summary
+
+`GET /api/tasks/summary`
+
+Response example:
+
+```json
+{"queued": 5, "processing": 2, "completed": 12, "failed": 1}
+```
+
+## Implementation Notes
+
+- Task creation is transactional and enqueues an Oban job inside `Ecto.Multi`
+- Worker logic simulates processing duration by priority and includes retry behavior
+- Cursor pagination is used to avoid offset-based listing at scale
+- Database indexes are defined for common sort and filter paths
+
+## Testing
+
+Run the test suite with:
+
+```bash
+mix test
+```
+
+## Notes
+
+See `NOTES.md` for implementation assumptions, trade-offs, and suggested future improvements.
