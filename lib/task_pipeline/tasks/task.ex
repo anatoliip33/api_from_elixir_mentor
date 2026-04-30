@@ -9,19 +9,16 @@ defmodule TaskPipeline.Tasks.Task do
     field :payload, :map
     field :max_attempts, :integer, default: 3
 
-    field :status, Ecto.Enum,
-      values: [:queued, :processing, :completed, :failed],
-      default: :queued
+    field :status, Ecto.Enum, values: [:queued, :processing, :completed, :failed], default: :queued
 
     timestamps(inserted_at: :created_at, updated_at: false)
   end
 
   def changeset(task, attrs) do
     task
-    |> cast(attrs, [:title, :type, :priority, :payload, :max_attempts])
-    |> validate_required([:title, :type, :priority, :payload])
+    |> cast(attrs, [:title, :type, :priority, :payload, :max_attempts, :status])
+    |> validate_required([:title, :type, :priority, :payload, :status])
     |> validate_number(:max_attempts, greater_than: 0)
-
     # |> put_change(:status, :queued)
   end
 end
