@@ -16,9 +16,8 @@ defmodule TaskPipeline.Tasks.Task do
 
   def changeset(task, attrs) do
     task
-    |> cast(attrs, [:title, :type, :priority, :payload, :max_attempts, :status])
-    |> validate_required([:title, :type, :priority, :payload, :status])
+    |> cast(attrs, [:title, :type, :priority, :payload, :max_attempts])
+    |> validate_required([:title, :type, :priority, :payload])
     |> validate_number(:max_attempts, greater_than: 0)
-    # |> put_change(:status, :queued)
   end
 end

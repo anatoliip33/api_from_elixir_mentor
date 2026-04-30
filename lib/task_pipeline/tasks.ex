@@ -5,6 +5,8 @@ defmodule TaskPipeline.Tasks do
 
   alias TaskPipeline.Repo
   alias TaskPipeline.Tasks.Task
+  alias TaskPipeline.TaskWorker
+
   import Ecto.Query
 
   @statuses Ecto.Enum.values(Task, :status)
@@ -32,6 +34,13 @@ defmodule TaskPipeline.Tasks do
 
   def get_task!(id), do: Repo.get!(Task, id)
 
+  def update_task(%Task{} = task, attrs) do
+    task
+    |> Task.changeset(attrs)
+    |> Ecto.Changeset.put_change(:status, attrs[:status])
+    |> Repo.update()
+  end
+
   defp filter_by_id(query, :error), do: query
   defp filter_by_id(query, {id, _}), do: where(query, [t], t.id < ^id)
 
@@ -54,9 +63,18 @@ defmodule TaskPipeline.Tasks do
   defp filter_by_priority(query, _priority), do: query
 
   def create_task(attrs) do
-    %Task{}
-    |> Task.changeset(attrs)
-    |> Repo.insert()
+    Ecto.Multi.new()
+    |> Ecto.Multi.insert(:task, Task.changeset(%Task{}, attrs))
+    |> Ecto.Multi.run(:enqueue_job, fn _repo, %{task: task} ->
+      job =
+        TaskWorker.new(
+          %{"task_id" => task.id},
+          max_attempts: task.max_attempts
+        )
+
+      Oban.insert(job)
+    end)
+    |> Repo.transaction()
   end
 
   def get_summary() do
