@@ -3,7 +3,7 @@ defmodule TaskPipeline.MixProject do
 
   def project do
     [
-      app: :api_from_elixir_mentor,
+      app: :task_pipeline,
       version: "0.1.0",
       elixir: "~> 1.19.5",
       elixirc_paths: elixirc_paths(Mix.env()),
@@ -52,7 +52,9 @@ defmodule TaskPipeline.MixProject do
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.2.0"},
       {:bandit, "~> 1.5"},
-      {:ecto_cursor, "~> 0.1.5"}
+      {:ecto_cursor, "~> 0.1.5"},
+      {:oban, "~> 2.0"},
+      {:igniter, "~> 0.5", only: [:dev]}
     ]
   end
 

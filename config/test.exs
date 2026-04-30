@@ -1,27 +1,28 @@
 import Config
+config :task_pipeline, Oban, testing: :manual
 
 # Configure your database
 #
 # The MIX_TEST_PARTITION environment variable can be used
 # to provide built-in test partitioning in CI environment.
 # Run `mix help test` for more information.
-config :api_from_elixir_mentor, TaskPipeline.Repo,
+config :task_pipeline, TaskPipeline.Repo,
   username: "postgres",
   password: "postgres",
   hostname: "localhost",
-  database: "api_from_elixir_mentor_test#{System.get_env("MIX_TEST_PARTITION")}",
+  database: "task_pipeline_test#{System.get_env("MIX_TEST_PARTITION")}",
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: System.schedulers_online() * 2
 
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
-config :api_from_elixir_mentor, TaskPipelineWeb.Endpoint,
+config :task_pipeline, TaskPipelineWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
   secret_key_base: "+WpzWrJv6jX1GiG9A/TcCI5SfAbwh2s8lnKGxqTQlkxwFfE2yhxpoqxNWQvc3Pqv",
   server: false
 
 # In test we don't send emails
-config :api_from_elixir_mentor, TaskPipeline.Mailer, adapter: Swoosh.Adapters.Test
+config :task_pipeline, TaskPipeline.Mailer, adapter: Swoosh.Adapters.Test
 
 # Disable swoosh api client as it is only required for production adapters
 config :swoosh, :api_client, false

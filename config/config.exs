@@ -1,18 +1,17 @@
-# This file is responsible for configuring your application
-# and its dependencies with the aid of the Config module.
-#
-# This configuration file is loaded before any dependency and
-# is restricted to this project.
-
-# General application configuration
 import Config
 
-config :api_from_elixir_mentor,
+config :task_pipeline, Oban,
+  engine: Oban.Engines.Basic,
+  notifier: Oban.Notifiers.Postgres,
+  queues: [default: 10],
+  repo: TaskPipeline.Repo
+
+config :task_pipeline,
   ecto_repos: [TaskPipeline.Repo],
   generators: [timestamp_type: :utc_datetime]
 
 # Configure the endpoint
-config :api_from_elixir_mentor, TaskPipelineWeb.Endpoint,
+config :task_pipeline, TaskPipelineWeb.Endpoint,
   url: [host: "localhost"],
   adapter: Bandit.PhoenixAdapter,
   render_errors: [

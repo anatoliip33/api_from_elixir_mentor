@@ -1,11 +1,11 @@
 import Config
 
 # Configure your database
-config :api_from_elixir_mentor, TaskPipeline.Repo,
+config :task_pipeline, TaskPipeline.Repo,
   username: "postgres",
   password: "postgres",
   hostname: "localhost",
-  database: "api_from_elixir_mentor_dev",
+  database: "task_pipeline_dev",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
@@ -16,7 +16,7 @@ config :api_from_elixir_mentor, TaskPipeline.Repo,
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we can use it
 # to bundle .js and .css sources.
-config :api_from_elixir_mentor, TaskPipelineWeb.Endpoint,
+config :task_pipeline, TaskPipelineWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
   http: [ip: {127, 0, 0, 1}],
@@ -50,7 +50,7 @@ config :api_from_elixir_mentor, TaskPipelineWeb.Endpoint,
 # different ports.
 
 # Enable dev routes for dashboard and mailbox
-config :api_from_elixir_mentor, dev_routes: true
+config :task_pipeline, dev_routes: true
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :default_formatter, format: "[$level] $message\n"

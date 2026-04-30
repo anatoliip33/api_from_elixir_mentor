@@ -21,5 +21,5 @@ defmodule TaskPipelineWeb.Gettext do
 
   See the [Gettext Docs](https://hexdocs.pm/gettext) for detailed usage.
   """
-  use Gettext.Backend, otp_app: :api_from_elixir_mentor
+  use Gettext.Backend, otp_app: :task_pipeline
 end

@@ -9,8 +9,8 @@ defmodule TaskPipeline.Application do
   def start(_type, _args) do
     children = [
       TaskPipeline.Repo,
-      {DNSCluster,
-       query: Application.get_env(:api_from_elixir_mentor, :dns_cluster_query) || :ignore},
+      {DNSCluster, query: Application.get_env(:task_pipeline, :dns_cluster_query) || :ignore},
+      {Oban, Application.fetch_env!(:task_pipeline, Oban)},
       {Phoenix.PubSub, name: TaskPipeline.PubSub},
       # Start a worker by calling: TaskPipeline.Worker.start_link(arg)
       # {TaskPipeline.Worker, arg},
