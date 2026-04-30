@@ -8,28 +8,19 @@
 import Config
 
 config :api_from_elixir_mentor,
-  ecto_repos: [ApiFromElixirMentor.Repo],
+  ecto_repos: [TaskPipeline.Repo],
   generators: [timestamp_type: :utc_datetime]
 
 # Configure the endpoint
-config :api_from_elixir_mentor, ApiFromElixirMentorWeb.Endpoint,
+config :api_from_elixir_mentor, TaskPipelineWeb.Endpoint,
   url: [host: "localhost"],
   adapter: Bandit.PhoenixAdapter,
   render_errors: [
-    formats: [json: ApiFromElixirMentorWeb.ErrorJSON],
+    formats: [json: TaskPipelineWeb.ErrorJSON],
     layout: false
   ],
-  pubsub_server: ApiFromElixirMentor.PubSub,
+  pubsub_server: TaskPipeline.PubSub,
   live_view: [signing_salt: "R3r7F9Z7"]
-
-# Configure the mailer
-#
-# By default it uses the "Local" adapter which stores the emails
-# locally. You can see the emails in your browser, at "/dev/mailbox".
-#
-# For production it's recommended to configure a different adapter
-# at the `config/runtime.exs`.
-config :api_from_elixir_mentor, ApiFromElixirMentor.Mailer, adapter: Swoosh.Adapters.Local
 
 # Configure Elixir's Logger
 config :logger, :default_formatter,

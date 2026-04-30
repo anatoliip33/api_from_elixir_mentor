@@ -1,4 +1,4 @@
-defmodule ApiFromElixirMentorWeb.ChangesetJSON do
+defmodule TaskPipelineWeb.ChangesetJSON do
   @doc """
   Renders changeset errors.
   """

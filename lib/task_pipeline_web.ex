@@ -1,12 +1,12 @@
-defmodule ApiFromElixirMentorWeb do
+defmodule TaskPipelineWeb do
   @moduledoc """
   The entrypoint for defining your web interface, such
   as controllers, components, channels, and so on.
 
   This can be used in your application as:
 
-      use ApiFromElixirMentorWeb, :controller
-      use ApiFromElixirMentorWeb, :html
+      use TaskPipelineWeb, :controller
+      use TaskPipelineWeb, :html
 
   The definitions below will be executed for every controller,
   component, etc, so keep them short and clean, focused
@@ -39,7 +39,7 @@ defmodule ApiFromElixirMentorWeb do
     quote do
       use Phoenix.Controller, formats: [:html, :json]
 
-      use Gettext, backend: ApiFromElixirMentorWeb.Gettext
+      use Gettext, backend: TaskPipelineWeb.Gettext
 
       import Plug.Conn
 
@@ -50,9 +50,9 @@ defmodule ApiFromElixirMentorWeb do
   def verified_routes do
     quote do
       use Phoenix.VerifiedRoutes,
-        endpoint: ApiFromElixirMentorWeb.Endpoint,
-        router: ApiFromElixirMentorWeb.Router,
-        statics: ApiFromElixirMentorWeb.static_paths()
+        endpoint: TaskPipelineWeb.Endpoint,
+        router: TaskPipelineWeb.Router,
+        statics: TaskPipelineWeb.static_paths()
     end
   end
 

@@ -1,6 +1,6 @@
-defmodule ApiFromElixirMentor do
+defmodule TaskPipeline do
   @moduledoc """
-  ApiFromElixirMentor keeps the contexts that define your domain
+  TaskPipeline keeps the contexts that define your domain
   and business logic.
 
   Contexts are also responsible for managing your data, regardless

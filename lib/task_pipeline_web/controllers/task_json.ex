@@ -1,5 +1,5 @@
-defmodule ApiFromElixirMentorWeb.TaskJSON do
-  alias ApiFromElixirMentor.Tasks.Task
+defmodule TaskPipelineWeb.TaskJSON do
+  alias TaskPipeline.Tasks.Task
 
   @doc """
   Renders a list of tasks.

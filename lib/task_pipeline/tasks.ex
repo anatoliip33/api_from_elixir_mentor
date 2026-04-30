@@ -1,10 +1,10 @@
-defmodule ApiFromElixirMentor.Tasks do
+defmodule TaskPipeline.Tasks do
   @moduledoc """
   The Tasks context.
   """
 
-  alias ApiFromElixirMentor.Repo
-  alias ApiFromElixirMentor.Tasks.Task
+  alias TaskPipeline.Repo
+  alias TaskPipeline.Tasks.Task
   import Ecto.Query
 
   @statuses Ecto.Enum.values(Task, :status)
@@ -15,7 +15,7 @@ defmodule ApiFromElixirMentor.Tasks do
     cursor_params = %{
       cursor: params["next_cursor"],
       limit: String.to_integer(params["limit"] || "100"),
-       max_limit: 100
+      max_limit: 100
     }
 
     %EctoCursor.Page{entries: entries, cursor: next_cursor} =

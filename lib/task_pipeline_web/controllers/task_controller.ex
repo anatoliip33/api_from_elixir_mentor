@@ -1,9 +1,9 @@
-defmodule ApiFromElixirMentorWeb.TaskController do
-  use ApiFromElixirMentorWeb, :controller
+defmodule TaskPipelineWeb.TaskController do
+  use TaskPipelineWeb, :controller
 
-  alias ApiFromElixirMentor.Tasks
+  alias TaskPipeline.Tasks
 
-  action_fallback ApiFromElixirMentorWeb.FallbackController
+  action_fallback TaskPipelineWeb.FallbackController
 
   def index(conn, params) do
     {tasks, next} = Tasks.list_tasks(params)

@@ -1,7 +1,7 @@
 import Config
 
 # Configure your database
-config :api_from_elixir_mentor, ApiFromElixirMentor.Repo,
+config :api_from_elixir_mentor, TaskPipeline.Repo,
   username: "postgres",
   password: "postgres",
   hostname: "localhost",
@@ -16,7 +16,7 @@ config :api_from_elixir_mentor, ApiFromElixirMentor.Repo,
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we can use it
 # to bundle .js and .css sources.
-config :api_from_elixir_mentor, ApiFromElixirMentorWeb.Endpoint,
+config :api_from_elixir_mentor, TaskPipelineWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
   http: [ip: {127, 0, 0, 1}],

@@ -1,8 +1,8 @@
-defmodule ApiFromElixirMentorWeb.TaskControllerTest do
-  use ApiFromElixirMentorWeb.ConnCase, async: true
+defmodule TaskPipelineWeb.TaskControllerTest do
+  use TaskPipelineWeb.ConnCase, async: true
 
-  alias ApiFromElixirMentor.Repo
-  alias ApiFromElixirMentor.Tasks.Task
+  alias TaskPipeline.Repo
+  alias TaskPipeline.Tasks.Task
 
   describe "POST /api/tasks" do
     test "creates a queued task", %{conn: conn} do

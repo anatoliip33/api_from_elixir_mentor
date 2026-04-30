@@ -5,7 +5,7 @@ import Config
 # The MIX_TEST_PARTITION environment variable can be used
 # to provide built-in test partitioning in CI environment.
 # Run `mix help test` for more information.
-config :api_from_elixir_mentor, ApiFromElixirMentor.Repo,
+config :api_from_elixir_mentor, TaskPipeline.Repo,
   username: "postgres",
   password: "postgres",
   hostname: "localhost",
@@ -15,13 +15,13 @@ config :api_from_elixir_mentor, ApiFromElixirMentor.Repo,
 
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
-config :api_from_elixir_mentor, ApiFromElixirMentorWeb.Endpoint,
+config :api_from_elixir_mentor, TaskPipelineWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
   secret_key_base: "+WpzWrJv6jX1GiG9A/TcCI5SfAbwh2s8lnKGxqTQlkxwFfE2yhxpoqxNWQvc3Pqv",
   server: false
 
 # In test we don't send emails
-config :api_from_elixir_mentor, ApiFromElixirMentor.Mailer, adapter: Swoosh.Adapters.Test
+config :api_from_elixir_mentor, TaskPipeline.Mailer, adapter: Swoosh.Adapters.Test
 
 # Disable swoosh api client as it is only required for production adapters
 config :swoosh, :api_client, false

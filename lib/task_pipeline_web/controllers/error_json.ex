@@ -1,4 +1,4 @@
-defmodule ApiFromElixirMentorWeb.ErrorJSON do
+defmodule TaskPipelineWeb.ErrorJSON do
   @moduledoc """
   This module is invoked by your endpoint in case of errors on JSON requests.
 

@@ -1,4 +1,4 @@
-defmodule ApiFromElixirMentor.MixProject do
+defmodule TaskPipeline.MixProject do
   use Mix.Project
 
   def project do
@@ -19,7 +19,7 @@ defmodule ApiFromElixirMentor.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {ApiFromElixirMentor.Application, []},
+      mod: {TaskPipeline.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end

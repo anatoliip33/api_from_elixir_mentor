@@ -1,4 +1,4 @@
-defmodule ApiFromElixirMentor.Application do
+defmodule TaskPipeline.Application do
   # See https://hexdocs.pm/elixir/Application.html
   # for more information on OTP Applications
   @moduledoc false
@@ -8,19 +8,19 @@ defmodule ApiFromElixirMentor.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      ApiFromElixirMentor.Repo,
+      TaskPipeline.Repo,
       {DNSCluster,
        query: Application.get_env(:api_from_elixir_mentor, :dns_cluster_query) || :ignore},
-      {Phoenix.PubSub, name: ApiFromElixirMentor.PubSub},
-      # Start a worker by calling: ApiFromElixirMentor.Worker.start_link(arg)
-      # {ApiFromElixirMentor.Worker, arg},
+      {Phoenix.PubSub, name: TaskPipeline.PubSub},
+      # Start a worker by calling: TaskPipeline.Worker.start_link(arg)
+      # {TaskPipeline.Worker, arg},
       # Start to serve requests, typically the last entry
-      ApiFromElixirMentorWeb.Endpoint
+      TaskPipelineWeb.Endpoint
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
-    opts = [strategy: :one_for_one, name: ApiFromElixirMentor.Supervisor]
+    opts = [strategy: :one_for_one, name: TaskPipeline.Supervisor]
     Supervisor.start_link(children, opts)
   end
 
@@ -28,7 +28,7 @@ defmodule ApiFromElixirMentor.Application do
   # whenever the application is updated.
   @impl true
   def config_change(changed, _new, removed) do
-    ApiFromElixirMentorWeb.Endpoint.config_change(changed, removed)
+    TaskPipelineWeb.Endpoint.config_change(changed, removed)
     :ok
   end
 end

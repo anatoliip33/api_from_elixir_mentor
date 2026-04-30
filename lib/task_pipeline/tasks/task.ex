@@ -1,4 +1,4 @@
-defmodule ApiFromElixirMentor.Tasks.Task do
+defmodule TaskPipeline.Tasks.Task do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -21,6 +21,7 @@ defmodule ApiFromElixirMentor.Tasks.Task do
     |> cast(attrs, [:title, :type, :priority, :payload, :max_attempts])
     |> validate_required([:title, :type, :priority, :payload])
     |> validate_number(:max_attempts, greater_than: 0)
+
     # |> put_change(:status, :queued)
   end
 end

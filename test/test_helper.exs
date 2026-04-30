@@ -1,2 +1,2 @@
 ExUnit.start()
-Ecto.Adapters.SQL.Sandbox.mode(ApiFromElixirMentor.Repo, :manual)
+Ecto.Adapters.SQL.Sandbox.mode(TaskPipeline.Repo, :manual)

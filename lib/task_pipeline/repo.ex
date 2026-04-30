@@ -1,6 +1,7 @@
-defmodule ApiFromElixirMentor.Repo do
+defmodule TaskPipeline.Repo do
   use Ecto.Repo,
     otp_app: :api_from_elixir_mentor,
     adapter: Ecto.Adapters.Postgres
+
   use EctoCursor
 end

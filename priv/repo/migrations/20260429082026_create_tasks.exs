@@ -1,4 +1,4 @@
-defmodule ApiFromElixirMentor.Repo.Migrations.CreateTasks do
+defmodule TaskPipeline.Repo.Migrations.CreateTasks do
   use Ecto.Migration
 
   def change do
